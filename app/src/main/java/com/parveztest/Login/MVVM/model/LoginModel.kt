@@ -1,8 +1,11 @@
 package com.parveztest.Login.MVVM.model
 
 data class LoginModel (
-    val email: String,
-    val pwd: String,
-    val status: String,
-    val message: String
+    var status: String,
+    var message: String
 )
+
+data class LoginRequest (
+    var email: String,
+    var pwd: String
+        )

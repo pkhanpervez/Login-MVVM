@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.parveztest.Login.MVVM.model.LoginModel
+import com.parveztest.Login.MVVM.model.LoginRequest
 import com.parveztest.Login.MVVM.retrofit.IAppAPIs
 import com.parveztest.Login.MVVM.retrofit.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,7 +21,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private var compositeDisposable = CompositeDisposable()
 
-    fun checkLogin(loginModel: LoginModel, userview: LoginView) {
+    fun getLoginResponse(): LiveData<LoginModel> {
+        return loginResponse
+    }
+
+    fun checkLogin(loginModel: LoginRequest, userview: LoginView) {
         compositeDisposable.add(
             userService.getLogin(loginModel)
                 .subscribeOn(Schedulers.io())
